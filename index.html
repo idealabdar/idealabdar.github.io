@@ -1,16 +1,569 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
 
 <head>
-   <meta charset="UTF-8" />
-   <link rel="icon" type="image/svg+xml" href="/logo.png" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <title>Cat & Friends Makassar</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="description"
+      content="Tempat Konsultasi Kucing Terbaik Kedua di Makassar, menyediakan layanan konsultasi gratis, Pet Hotel, Pet Sitter, dan Produk kesehatan kucing">
+   <title>Cat and Friends - Sahabat Kucing Makassar</title>
+
+   <!-- Schema Markup -->
+   <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Cat and Friends Makassar",
+        "telephone": "+6285340046722",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Swadaya, Pondok Asri 1",
+          "addressLocality": "Makassar"
+        }
+      }
+    </script>
+
+   <!-- Fonts: Plus Jakarta Sans -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet">
+
+   <!-- Font Awesome -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+   <!-- Tailwind CSS -->
+   <script src="https://cdn.tailwindcss.com"></script>
+
+   <!-- Custom Config -->
+   <script>
+      tailwind.config = {
+         theme: {
+            extend: {
+               fontFamily: {
+                  sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+               },
+               colors: {
+                  brand: {
+                     primary: '#8B5CF6',    // Violet 500
+                     secondary: '#A78BFA',  // Violet 400
+                     dark: '#4C1D95',       // Violet 900
+                     text: '#6B7280',       // Gray 500
+                     accent: '#F5F3FF',     // Violet 50
+                     surface: '#FFFFFF',    // White
+                  }
+               },
+               backgroundImage: {
+                  'gradient-primary': 'linear-gradient(135deg, #8B5CF6 0%, #D946EF 100%)',
+                  'gradient-soft': 'linear-gradient(180deg, #F5F3FF 0%, #FFFFFF 100%)',
+               }
+            }
+         }
+      }
+   </script>
+
+   <style>
+      .glass-nav {
+         background: rgba(255, 255, 255, 0.8);
+         backdrop-filter: blur(12px);
+         border-bottom: 1px solid rgba(229, 231, 235, 0.4);
+      }
+
+      .blob-shape {
+         border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+         animation: morph 8s ease-in-out infinite;
+      }
+
+      @keyframes morph {
+
+         0%,
+         100% {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+         }
+
+         34% {
+            border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
+         }
+
+         67% {
+            border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
+         }
+      }
+
+      .hide-scroll::-webkit-scrollbar {
+         display: none;
+      }
+
+      .hide-scroll {
+         -ms-overflow-style: none;
+         scrollbar-width: none;
+      }
+
+      .text-gradient {
+         background: linear-gradient(135deg, #8B5CF6 0%, #D946EF 100%);
+         -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent;
+         background-clip: text;
+      }
+   </style>
 </head>
 
-<body>
-   <div id="root"></div>
-   <script type="module" src="/src/main.jsx"></script>
+<body class="bg-brand-surface text-brand-text antialiased font-sans">
+
+   <!-- Navbar -->
+   <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+         <div class="flex justify-between items-center h-20">
+            <!-- Logo -->
+            <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+               <!-- GANTI src INI dengan file logo Anda (misal: assets/img/logo.png) -->
+               <img src="https://via.placeholder.com/150x50/ffffff/8B5CF6?text=LOGO+ANDA" alt="Cat and Friends Logo"
+                  class="h-10 md:h-12 w-auto object-contain">
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 items-center">
+               <a href="#home" class="text-brand-dark font-medium hover:text-brand-primary transition">Home</a>
+               <a href="#about" class="text-brand-text font-medium hover:text-brand-primary transition">Tentang Kami</a>
+               <a href="#layanan" class="text-brand-text font-medium hover:text-brand-primary transition">Layanan</a>
+               <!-- FIX: Link Produk sekarang mengarah ke ID yang benar -->
+               <a href="#produk" class="text-brand-text font-medium hover:text-brand-primary transition">Produk</a>
+               <a href="#testimoni"
+                  class="text-brand-text font-medium hover:text-brand-primary transition">Testimoni</a>
+               <a href="https://wa.me/6285340046722" target="_blank"
+                  class="bg-gradient-primary text-white px-6 py-2.5 rounded-full font-semibold shadow-lg shadow-purple-300 hover:shadow-purple-400 hover:-translate-y-0.5 transition-all duration-300">
+                  Konsultasi Gratis
+               </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center">
+               <button id="mobile-menu-btn" class="text-brand-dark hover:text-brand-primary focus:outline-none">
+                  <i class="fa-solid fa-bars text-2xl"></i>
+               </button>
+            </div>
+         </div>
+      </div>
+
+      <!-- Mobile Menu Panel -->
+      <div id="mobile-menu" class="hidden md:hidden bg-white absolute w-full shadow-xl border-t border-gray-100">
+         <div class="px-4 pt-2 pb-6 space-y-2">
+            <a href="#home" class="block px-3 py-2 text-brand-primary font-bold bg-brand-accent rounded-lg">Home</a>
+            <a href="#about"
+               class="block px-3 py-2 text-brand-dark font-medium hover:bg-brand-accent rounded-lg">Tentang Kami</a>
+            <a href="#layanan"
+               class="block px-3 py-2 text-brand-dark font-medium hover:bg-brand-accent rounded-lg">Layanan</a>
+            <a href="#produk"
+               class="block px-3 py-2 text-brand-dark font-medium hover:bg-brand-accent rounded-lg">Produk</a>
+            <a href="https://wa.me/6285340046722" class="block px-3 py-2 text-brand-primary font-bold">Konsultasi
+               Sekarang</a>
+         </div>
+      </div>
+   </nav>
+
+   <!-- Hero Section -->
+   <section id="home" class="pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-soft relative">
+      <div
+         class="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-20 animate-blob">
+      </div>
+      <div
+         class="absolute top-0 left-0 w-[500px] h-[500px] bg-pink-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-20 animate-blob animation-delay-2000">
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+         <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="order-2 lg:order-1 text-center lg:text-left">
+               <span
+                  class="inline-block px-4 py-1.5 rounded-full bg-white border border-purple-100 text-brand-primary text-sm font-bold tracking-wide mb-6 shadow-sm">
+                  ✨ Solusi Premium Anabul
+               </span>
+               <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight mb-6 text-brand-dark">
+                  Sahabat Terbaik <br>
+                  <span class="text-gradient">Kucing Kesayangan</span>
+               </h1>
+               <p class="text-lg text-brand-text mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
+                  Dari konsultasi kesehatan gratis, produk herbal alami, hingga layanan Pet Hotel & Sitter terpercaya di
+                  Makassar.
+               </p>
+               <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                  <a href="https://wa.me/6285340046722" target="_blank"
+                     class="bg-gradient-primary text-white px-8 py-4 rounded-full font-bold shadow-lg shadow-purple-300 hover:shadow-purple-400 hover:-translate-y-1 transition-all duration-300">
+                     Yuk Konsultasi!
+                  </a>
+                  <a href="#layanan"
+                     class="bg-white text-brand-dark border border-gray-200 px-8 py-4 rounded-full font-bold hover:border-brand-primary hover:text-brand-primary transition duration-300 flex items-center justify-center gap-2 shadow-sm">
+                     Lihat Layanan <i class="fa-solid fa-arrow-down text-sm"></i>
+                  </a>
+               </div>
+            </div>
+
+            <div class="relative order-1 lg:order-2 flex justify-center">
+               <div class="relative w-full max-w-md aspect-square">
+                  <div
+                     class="absolute inset-0 bg-gradient-to-tr from-purple-200 to-pink-200 blob-shape transform rotate-6 scale-105">
+                  </div>
+                  <div
+                     class="relative w-full h-full overflow-hidden blob-shape shadow-2xl bg-white border-4 border-white">
+                     <img
+                        src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Kucing Lucu" class="w-full h-full object-cover">
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- About Section -->
+   <section id="about" class="py-24 bg-white relative z-20 scroll-mt-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+         <div class="text-center mb-16">
+            <span class="text-brand-primary font-bold tracking-wider uppercase text-sm">Tentang Kami</span>
+            <h2 class="text-3xl md:text-4xl font-bold mt-2 text-brand-dark">Tempat "Terbaik Kedua" Untuk Kucingmu</h2>
+            <div class="w-24 h-1.5 bg-gradient-primary mx-auto mt-4 rounded-full"></div>
+         </div>
+         <div class="grid md:grid-cols-3 gap-8">
+            <div
+               class="group p-8 rounded-3xl bg-white border border-gray-100 shadow-lg hover:shadow-purple-200/50 hover:border-purple-100 transition duration-300">
+               <div
+                  class="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center mb-6 text-brand-primary text-2xl group-hover:scale-110 transition duration-300">
+                  <i class="fa-solid fa-comments"></i>
+               </div>
+               <h3 class="text-xl font-bold mb-3 text-brand-dark">Konsultasi Dahulu</h3>
+               <p class="text-brand-text">Ceritakan masalah anabulmu layaknya bercerita pada teman. Kami mendengarkan
+                  sebelum menyarankan.</p>
+            </div>
+            <div
+               class="group p-8 rounded-3xl bg-white border border-gray-100 shadow-lg hover:shadow-purple-200/50 hover:border-purple-100 transition duration-300">
+               <div
+                  class="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center mb-6 text-brand-primary text-2xl group-hover:scale-110 transition duration-300">
+                  <i class="fa-solid fa-leaf"></i>
+               </div>
+               <h3 class="text-xl font-bold mb-3 text-brand-dark">Bahan Alami</h3>
+               <p class="text-brand-text">Produk kami diracik dengan bahan yang aman dan alami untuk mempercepat
+                  pemulihan.</p>
+            </div>
+            <div
+               class="group p-8 rounded-3xl bg-white border border-gray-100 shadow-lg hover:shadow-purple-200/50 hover:border-purple-100 transition duration-300">
+               <div
+                  class="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center mb-6 text-brand-primary text-2xl group-hover:scale-110 transition duration-300">
+                  <i class="fa-solid fa-heart-pulse"></i>
+               </div>
+               <h3 class="text-xl font-bold mb-3 text-brand-dark">Solusi Tepat</h3>
+               <p class="text-brand-text">Bukan sekedar jualan, tapi memberikan solusi produk yang relevan dengan
+                  masalah kesehatan kucingmu.</p>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- Layanan Favorit Section -->
+   <section id="layanan" class="py-24 bg-brand-accent scroll-mt-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+         <div class="text-center mb-16">
+            <span class="text-brand-primary font-bold tracking-wider uppercase text-sm">Layanan Ekstra</span>
+            <h2 class="text-3xl md:text-4xl font-bold mt-2 text-brand-dark">Layanan Favorit Anabul</h2>
+            <p class="text-brand-text mt-4 max-w-2xl mx-auto">Kami tidak hanya menjual produk, tapi juga membantu
+               merawat mereka saat kamu sibuk.</p>
+         </div>
+         <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+            <!-- Card Layanan 1 -->
+            <div class="group relative rounded-[2rem] overflow-hidden h-96 shadow-xl cursor-pointer">
+               <img
+                  src="https://images.unsplash.com/photo-1541781777631-fa9531908431?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="Pet Sitter"
+                  class="absolute w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+               <div class="absolute inset-0 bg-gradient-to-t from-purple-900/90 via-purple-900/40 to-transparent"></div>
+               <div
+                  class="absolute bottom-0 left-0 p-8 w-full z-10 translate-y-2 group-hover:translate-y-0 transition duration-300">
+                  <div class="flex items-center gap-3 mb-3">
+                     <div
+                        class="w-10 h-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center text-white">
+                        <i class="fa-solid fa-hand-holding-heart"></i>
+                     </div>
+                     <span class="text-white font-bold tracking-wide uppercase text-sm">Home Visit</span>
+                  </div>
+                  <h3 class="text-white text-3xl font-bold mb-2">Pet Sitter</h3>
+                  <p class="text-purple-100 mb-6 line-clamp-2">Lagi sibuk atau luar kota? Kami datang ke rumahmu untuk
+                     memberi makan & bermain.</p>
+                  <a href="https://wa.me/6285340046722?text=Halo%20Admin,%20mau%20tanya%20tentang%20Pet%20Sitter"
+                     target="_blank"
+                     class="inline-flex items-center justify-center w-full sm:w-auto bg-white text-brand-primary px-6 py-3 rounded-full font-bold hover:bg-brand-secondary hover:text-white transition duration-300 shadow-lg">Booking
+                     Sekarang <i class="fa-solid fa-arrow-right ml-2"></i></a>
+               </div>
+            </div>
+            <!-- Card Layanan 2 -->
+            <div class="group relative rounded-[2rem] overflow-hidden h-96 shadow-xl cursor-pointer">
+               <img
+                  src="https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="Pet Hotel"
+                  class="absolute w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+               <div class="absolute inset-0 bg-gradient-to-t from-purple-900/90 via-purple-900/40 to-transparent"></div>
+               <div
+                  class="absolute bottom-0 left-0 p-8 w-full z-10 translate-y-2 group-hover:translate-y-0 transition duration-300">
+                  <div class="flex items-center gap-3 mb-3">
+                     <div
+                        class="w-10 h-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center text-white">
+                        <i class="fa-solid fa-hotel"></i>
+                     </div>
+                     <span class="text-white font-bold tracking-wide uppercase text-sm">Penginapan Nyaman</span>
+                  </div>
+                  <h3 class="text-white text-3xl font-bold mb-2">Pet Hotel</h3>
+                  <p class="text-purple-100 mb-6 line-clamp-2">Liburan tenang tanpa khawatir. Fasilitas ruangan bersih,
+                     ber-AC, dan pemantauan ketat.</p>
+                  <a href="https://wa.me/6285340046722?text=Halo%20Admin,%20mau%20tanya%20tentang%20Pet%20Hotel"
+                     target="_blank"
+                     class="inline-flex items-center justify-center w-full sm:w-auto bg-white text-brand-primary px-6 py-3 rounded-full font-bold hover:bg-brand-secondary hover:text-white transition duration-300 shadow-lg">Cek
+                     Ketersediaan <i class="fa-solid fa-arrow-right ml-2"></i></a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- FIX: ID Produk dipindahkan ke sini dan ditambahkan class scroll-mt-24 -->
+   <!-- Featured Products (Horizontal Scroll) -->
+   <section id="produk" class="py-24 bg-white scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+         <div class="flex justify-between items-end mb-10">
+            <div>
+               <h2 class="text-3xl font-bold text-brand-dark">Produk Unggulan</h2>
+               <p class="text-brand-text mt-2">Pilihan favorit para cat lovers makassar</p>
+            </div>
+            <div class="hidden md:flex gap-2">
+               <button id="scroll-left"
+                  class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-brand-dark hover:bg-brand-primary hover:text-white hover:border-transparent transition shadow-sm"><i
+                     class="fa-solid fa-chevron-left"></i></button>
+               <button id="scroll-right"
+                  class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-brand-dark hover:bg-brand-primary hover:text-white hover:border-transparent transition shadow-sm"><i
+                     class="fa-solid fa-chevron-right"></i></button>
+            </div>
+         </div>
+
+         <!-- Scroll Container -->
+         <div id="featured-scroll" class="flex gap-6 overflow-x-auto pb-8 hide-scroll snap-x snap-mandatory">
+
+            <!-- Product Card 1 -->
+            <div
+               class="min-w-[280px] md:min-w-[320px] bg-white rounded-3xl p-5 shadow-lg shadow-purple-100 hover:shadow-xl hover:-translate-y-1 transition duration-300 snap-center border border-gray-50">
+               <div
+                  class="relative bg-purple-50 rounded-2xl h-56 mb-4 overflow-hidden flex items-center justify-center group">
+                  <img
+                     src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=500&q=80"
+                     alt="Tamavit"
+                     class="object-cover w-full h-full mix-blend-overlay opacity-60 group-hover:scale-105 transition duration-500">
+                  <span class="relative z-10 font-extrabold text-2xl text-brand-primary opacity-40">TAMAVIT</span>
+               </div>
+               <h3 class="font-bold text-lg text-brand-dark">Tamavit - Protein Booster</h3>
+               <div class="flex justify-between items-center mt-3">
+                  <span class="text-xl font-bold text-transparent bg-clip-text bg-gradient-primary">Rp 49.000</span>
+                  <div class="text-yellow-400 text-xs flex gap-1"><i class="fa-solid fa-star"></i> 4.9</div>
+               </div>
+               <a href="https://s.id/1VhXt" target="_blank"
+                  class="block w-full text-center mt-5 bg-gray-50 text-brand-dark rounded-xl py-3 hover:bg-brand-dark hover:text-white transition font-bold text-sm">Lihat
+                  Detail</a>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div
+               class="min-w-[280px] md:min-w-[320px] bg-white rounded-3xl p-5 shadow-lg shadow-purple-100 hover:shadow-xl hover:-translate-y-1 transition duration-300 snap-center border border-gray-50">
+               <div
+                  class="relative bg-pink-50 rounded-2xl h-56 mb-4 overflow-hidden flex items-center justify-center group">
+                  <img
+                     src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=500&q=80"
+                     alt="Metaful"
+                     class="object-cover w-full h-full mix-blend-overlay opacity-60 group-hover:scale-105 transition duration-500">
+                  <span class="relative z-10 font-extrabold text-2xl text-brand-primary opacity-40">METAFUL</span>
+               </div>
+               <h3 class="font-bold text-lg text-brand-dark">Metaful - Obat Flu Ampuh</h3>
+               <div class="flex justify-between items-center mt-3">
+                  <span class="text-xl font-bold text-transparent bg-clip-text bg-gradient-primary">Rp 25.000</span>
+                  <div class="text-yellow-400 text-xs flex gap-1"><i class="fa-solid fa-star"></i> 5.0</div>
+               </div>
+               <a href="https://s.id/1VhXN" target="_blank"
+                  class="block w-full text-center mt-5 bg-gray-50 text-brand-dark rounded-xl py-3 hover:bg-brand-dark hover:text-white transition font-bold text-sm">Lihat
+                  Detail</a>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div
+               class="min-w-[280px] md:min-w-[320px] bg-white rounded-3xl p-5 shadow-lg shadow-purple-100 hover:shadow-xl hover:-translate-y-1 transition duration-300 snap-center border border-gray-50">
+               <div
+                  class="relative bg-purple-50 rounded-2xl h-56 mb-4 overflow-hidden flex items-center justify-center group">
+                  <img
+                     src="https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&w=500&q=80"
+                     alt="CAF Spray"
+                     class="object-cover w-full h-full mix-blend-overlay opacity-60 group-hover:scale-105 transition duration-500">
+                  <span class="relative z-10 font-extrabold text-2xl text-brand-primary opacity-40">SPRAY</span>
+               </div>
+               <h3 class="font-bold text-lg text-brand-dark">Anti Microbial Spray</h3>
+               <div class="flex justify-between items-center mt-3">
+                  <span class="text-xl font-bold text-transparent bg-clip-text bg-gradient-primary">Rp 49.000</span>
+                  <div class="text-yellow-400 text-xs flex gap-1"><i class="fa-solid fa-star"></i> 4.8</div>
+               </div>
+               <a href="https://s.id/1VhXT" target="_blank"
+                  class="block w-full text-center mt-5 bg-gray-50 text-brand-dark rounded-xl py-3 hover:bg-brand-dark hover:text-white transition font-bold text-sm">Lihat
+                  Detail</a>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- Bundle/Paket Section -->
+   <section class="py-24 bg-gradient-soft">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+         <div class="grid md:grid-cols-2 gap-8">
+            <div
+               class="relative rounded-[2.5rem] overflow-hidden group h-80 shadow-2xl shadow-purple-200 cursor-pointer">
+               <img src="https://images.unsplash.com/photo-1511044568932-338cba0fb803?auto=format&fit=crop&w=800&q=80"
+                  alt="Paket Perawatan"
+                  class="absolute w-full h-full object-cover transition duration-500 group-hover:scale-110">
+               <div
+                  class="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent flex flex-col justify-end p-10">
+                  <span class="text-purple-300 font-bold mb-1 tracking-wide uppercase text-sm">Paket Hemat</span>
+                  <h3 class="text-white text-3xl font-bold mb-2">Paket Si Yuli (Perawatan)</h3>
+                  <div class="flex items-center gap-4 mt-2">
+                     <span class="text-2xl font-bold text-white">Rp 120k</span>
+                     <span
+                        class="bg-white/20 backdrop-blur text-white px-3 py-1 rounded-lg text-xs font-bold border border-white/30">Hemat
+                        20%</span>
+                  </div>
+               </div>
+            </div>
+            <div
+               class="relative rounded-[2.5rem] overflow-hidden group h-80 shadow-2xl shadow-purple-200 cursor-pointer">
+               <img src="https://images.unsplash.com/photo-1519052537078-e6302a4968ef?auto=format&fit=crop&w=800&q=80"
+                  alt="Paket Kesehatan"
+                  class="absolute w-full h-full object-cover transition duration-500 group-hover:scale-110">
+               <div
+                  class="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent flex flex-col justify-end p-10">
+                  <span class="text-purple-300 font-bold mb-1 tracking-wide uppercase text-sm">Best Seller</span>
+                  <h3 class="text-white text-3xl font-bold mb-2">Paket Si Tama (Kesehatan)</h3>
+                  <div class="flex items-center gap-4 mt-2">
+                     <span class="text-2xl font-bold text-white">Rp 100k</span>
+                     <span
+                        class="bg-white/20 backdrop-blur text-white px-3 py-1 rounded-lg text-xs font-bold border border-white/30">Lengkap</span>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- Testimonials -->
+   <section id="testimoni" class="py-24 bg-white scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+         <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+               <span class="text-brand-primary font-bold tracking-wider uppercase text-sm">Review Jujur</span>
+               <h2 class="text-3xl font-bold mt-2 mb-6 text-brand-dark">Apa Kata Mereka?</h2>
+               <p class="text-brand-text mb-8">Ribuan kucing di Makassar telah terbantu dengan layanan kami.</p>
+               <div class="bg-brand-accent p-8 rounded-3xl relative border border-purple-50">
+                  <i class="fa-solid fa-quote-right absolute top-8 right-8 text-brand-primary text-4xl opacity-20"></i>
+                  <div class="flex text-yellow-400 text-sm mb-3"><i class="fa-solid fa-star"></i><i
+                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                        class="fa-solid fa-star"></i></div>
+                  <p class="text-brand-dark font-medium italic mb-6 leading-relaxed">"Alhamdulillah, setelah kucing saya
+                     konsumsi obat flunya (Metaful), kucing saya sudah kembali pulih dan aktif kesana kemari."</p>
+                  <div class="flex items-center gap-4">
+                     <div
+                        class="w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center text-white font-bold text-lg">
+                        A</div>
+                     <div>
+                        <h4 class="font-bold text-sm text-brand-dark">Kak Anisa</h4>
+                        <p class="text-xs text-brand-text">Customer Metaful</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+               <img src="https://images.unsplash.com/photo-1570824104453-508955ab713e?auto=format&fit=crop&w=400&q=80"
+                  class="rounded-[2rem] w-full h-48 object-cover mb-4 shadow-md hover:scale-105 transition duration-500">
+               <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&w=400&q=80"
+                  class="rounded-[2rem] w-full h-64 object-cover mt-8 shadow-md hover:scale-105 transition duration-500">
+               <img src="https://images.unsplash.com/photo-1519052537078-e6302a4968ef?auto=format&fit=crop&w=400&q=80"
+                  class="rounded-[2rem] w-full h-64 object-cover -mt-12 shadow-md hover:scale-105 transition duration-500">
+               <img src="https://images.unsplash.com/photo-1491485880348-85d48a9e5312?auto=format&fit=crop&w=400&q=80"
+                  class="rounded-[2rem] w-full h-48 object-cover shadow-md hover:scale-105 transition duration-500">
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- Footer -->
+   <footer class="bg-white border-t border-purple-100 pt-20 pb-10 rounded-t-[3rem] mt-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+         <div class="grid md:grid-cols-3 gap-12 mb-12">
+            <div>
+               <div class="flex items-center gap-2 mb-6">
+                  <!-- Logo diganti gambar, sama seperti navbar -->
+                  <img src="https://via.placeholder.com/150x50/ffffff/8B5CF6?text=LOGO+ANDA" alt="Cat and Friends Logo"
+                     class="h-10 md:h-12 w-auto object-contain">
+               </div>
+               <p class="text-brand-text mb-6">"Product based on customer's problem is a solution". Kami hadir untuk
+                  mendengar dan memberi solusi.</p>
+               <div class="flex gap-4">
+                  <a href="https://www.instagram.com/catandfriends_id/"
+                     class="w-10 h-10 rounded-full bg-purple-50 text-brand-primary flex items-center justify-center hover:bg-brand-primary hover:text-white transition"><i
+                        class="fa-brands fa-instagram"></i></a>
+                  <a href="https://www.tiktok.com/@catandfriends_id"
+                     class="w-10 h-10 rounded-full bg-purple-50 text-brand-primary flex items-center justify-center hover:bg-brand-primary hover:text-white transition"><i
+                        class="fa-brands fa-tiktok"></i></a>
+                  <a href="https://wa.me/6285340046722"
+                     class="w-10 h-10 rounded-full bg-purple-50 text-brand-primary flex items-center justify-center hover:bg-brand-primary hover:text-white transition"><i
+                        class="fa-brands fa-whatsapp"></i></a>
+               </div>
+            </div>
+            <div>
+               <h4 class="font-bold text-lg mb-6 text-brand-dark">Kontak Kami</h4>
+               <ul class="space-y-4 text-brand-text">
+                  <li class="flex gap-3"><i class="fa-solid fa-location-dot mt-1 text-brand-primary"></i><span>Jl.
+                        Swadaya, Pondok Asri 1<br>Sudiang, Makassar</span></li>
+                  <li class="flex gap-3"><i class="fa-solid fa-phone mt-1 text-brand-primary"></i><a
+                        href="https://wa.me/6285340046722"
+                        class="hover:text-brand-primary transition">0853-4004-6722</a></li>
+               </ul>
+            </div>
+            <div>
+               <h4 class="font-bold text-lg mb-6 text-brand-dark">Jam Operasional</h4>
+               <ul class="space-y-3 text-brand-text">
+                  <li class="flex justify-between border-b border-gray-100 pb-2"><span>Senin - Sabtu</span><span>10.00 -
+                        20.00</span></li>
+                  <li class="flex justify-between border-b border-gray-100 pb-2"><span>Minggu</span><span>10.00 -
+                        15.00</span></li>
+               </ul>
+            </div>
+         </div>
+         <div class="border-t border-gray-100 pt-8 text-center text-gray-400 text-sm">
+            <p>&copy; 2024 Cat and Friends Makassar.</p>
+         </div>
+      </div>
+   </footer>
+
+   <!-- Scripts -->
+   <script>
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      btn.addEventListener('click', () => { menu.classList.toggle('hidden'); });
+
+      const scrollContainer = document.getElementById('featured-scroll');
+      const leftBtn = document.getElementById('scroll-left');
+      const rightBtn = document.getElementById('scroll-right');
+
+      leftBtn.addEventListener('click', () => { scrollContainer.scrollBy({ left: -320, behavior: 'smooth' }); });
+      rightBtn.addEventListener('click', () => { scrollContainer.scrollBy({ left: 320, behavior: 'smooth' }); });
+
+      window.addEventListener('scroll', () => {
+         const nav = document.getElementById('navbar');
+         if (window.scrollY > 50) {
+            nav.classList.add('shadow-md');
+            nav.classList.replace('bg-transparent', 'bg-white/90');
+         } else {
+            nav.classList.remove('shadow-md');
+            nav.classList.replace('bg-white/90', 'bg-transparent');
+         }
+      });
+   </script>
 </body>
 
 </html>
