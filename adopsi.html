@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>MeowMatch - Temukan Sahabat Bulu Sejatimu | Platform Adopsi Kucing Indonesia</title>
+    <meta name="description"
+        content="Platform adopsi kucing terpercaya di Indonesia. Temukan kucing untuk diadopsi dari shelter terverifikasi, lakukan donasi, dan pasang iklan adopsi kucing dengan aman dan mudah.">
+    <meta name="keywords"
+        content="adopsi kucing, shelter kucing, donasi kucing, kucing lucu, adopsi hewan, rescue cat, meowmatch, kucing gratis, cari kucing">
+    <meta name="author" content="MeowMatch Indonesia">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://meowmatch.id/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meowmatch.id/">
+    <meta property="og:title" content="MeowMatch - Temukan Sahabat Bulu Sejatimu">
+    <meta property="og:description"
+        content="Platform adopsi kucing terpercaya. Temukan kucing impianmu atau bantu mereka menemukan rumah baru. Transparan, aman, dan penuh kasih.">
+    <meta property="og:image"
+        content="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://meowmatch.id/">
+    <meta property="twitter:title" content="MeowMatch - Temukan Sahabat Bulu Sejatimu">
+    <meta property="twitter:description"
+        content="Platform adopsi kucing terpercaya. Temukan kucing impianmu atau bantu mereka menemukan rumah baru.">
+    <meta property="twitter:image"
+        content="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "MeowMatch Indonesia",
+      "alternateName": "MeowMatch",
+      "url": "https://meowmatch.id/",
+      "description": "Platform adopsi kucing terpercaya yang menghubungkan shelter dan adopter.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://meowmatch.id/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8B5CF6', // Changed to Purple (Violet-500)
+                        secondary: '#54a0ff',
+                        dark: '#2d3436',
+                        light: '#f9f9f9'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Smooth Fade In */
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .verified-badge {
+            color: #54a0ff;
+            margin-left: 4px;
+        }
+
+        /* Custom Gradient Text */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #8B5CF6, #4F46E5);
+        }
+    </style>
+</head>
+
+<body class="text-gray-700">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm fixed w-full z-50 top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-cat text-3xl text-primary"></i>
+                    <span class="font-bold text-xl tracking-tight text-dark">MeowMatch</span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#" class="text-primary font-medium hover:text-purple-700 transition">Cari Kucing</a>
+                    <a href="#donation" class="text-gray-500 hover:text-primary transition">Donasi Shelter</a>
+                    <button onclick="openRegisterCatModal()"
+                        class="bg-gradient-to-r from-purple-500 to-indigo-600 text-white px-5 py-2 rounded-full hover:from-purple-600 hover:to-indigo-700 transition shadow-md shadow-purple-200 flex items-center gap-2 transform hover:-translate-y-0.5 duration-200">
+                        <i class="fas fa-paw"></i> Daftarkan Kucing
+                    </button>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white border-t border-gray-100 absolute top-16 left-0 w-full shadow-lg z-40 fade-in">
+            <div class="px-4 pt-2 pb-4 space-y-1 flex flex-col">
+                <a href="#"
+                    class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-purple-50 border-b border-gray-50">Cari
+                    Kucing</a>
+                <a href="#donation"
+                    class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-purple-50 border-b border-gray-50">Donasi
+                    Shelter</a>
+                <button onclick="openRegisterCatModal()"
+                    class="mt-4 w-full bg-gradient-to-r from-purple-500 to-indigo-600 text-white px-5 py-3 rounded-lg hover:from-purple-600 hover:to-indigo-700 transition shadow-md flex items-center justify-center gap-2 font-bold">
+                    <i class="fas fa-paw"></i> Daftarkan Kucing
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="pt-24 pb-10 px-4 bg-gradient-to-b from-purple-50 to-white">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-dark mb-4">Temukan <span class="text-gradient">Sahabat
+                    Bulu</span> Sejatimu</h1>
+            <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">Lebih dari sekadar adopsi. Kami menghubungkan Anda
+                dengan kucing yang membutuhkan rumah dengan transparansi penuh dan keamanan terjamin.</p>
+
+            <!-- Smart Filter Bar -->
+            <div
+                class="bg-white p-4 rounded-xl shadow-lg shadow-purple-100 max-w-4xl mx-auto flex flex-wrap gap-4 items-center justify-center border border-gray-100">
+                <div class="flex items-center gap-2 px-3 py-2 bg-gray-50 rounded-lg cursor-pointer hover:bg-purple-50 border border-transparent hover:border-primary transition select-none group"
+                    onclick="toggleFilter(this, 'ramah-anak')">
+                    <i class="fas fa-child text-gray-400 group-hover:text-primary transition"></i>
+                    <span class="text-sm font-medium">Ramah Anak</span>
+                </div>
+                <div class="flex items-center gap-2 px-3 py-2 bg-gray-50 rounded-lg cursor-pointer hover:bg-purple-50 border border-transparent hover:border-primary transition select-none group"
+                    onclick="toggleFilter(this, 'steril')">
+                    <i class="fas fa-notes-medical text-gray-400 group-hover:text-primary transition"></i>
+                    <span class="text-sm font-medium">Sudah Steril</span>
+                </div>
+                <div class="flex items-center gap-2 px-3 py-2 bg-gray-50 rounded-lg cursor-pointer hover:bg-purple-50 border border-transparent hover:border-primary transition select-none group"
+                    onclick="toggleFilter(this, 'vaksin')">
+                    <i class="fas fa-syringe text-gray-400 group-hover:text-primary transition"></i>
+                    <span class="text-sm font-medium">Vaksin Lengkap</span>
+                </div>
+                <div class="flex items-center gap-2 px-3 py-2 bg-gray-50 rounded-lg cursor-pointer hover:bg-purple-50 border border-transparent hover:border-primary transition select-none group"
+                    onclick="toggleFilter(this, 'indoor')">
+                    <i class="fas fa-home text-gray-400 group-hover:text-primary transition"></i>
+                    <span class="text-sm font-medium">Indoor Only</span>
+                </div>
+                <button onclick="applyFilters()"
+                    class="bg-dark text-white px-6 py-2 rounded-lg font-medium hover:bg-black transition ml-auto w-full md:w-auto shadow-md">
+                    Cari <i class="fas fa-search ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW SECTION: Register Cat CTA -->
+    <section class="bg-white py-8 border-b border-gray-100">
+        <div class="max-w-5xl mx-auto px-4">
+            <div
+                class="bg-gradient-to-r from-purple-100 to-indigo-50 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm border border-purple-100 relative overflow-hidden">
+                <!-- Decorative Circles -->
+                <div class="absolute -top-12 -left-12 w-40 h-40 bg-white opacity-40 rounded-full"></div>
+                <div class="absolute -bottom-12 -right-12 w-40 h-40 bg-white opacity-40 rounded-full"></div>
+
+                <div class="flex items-center gap-4 z-10 text-center md:text-left">
+                    <div class="bg-white p-3 rounded-full shadow-sm text-primary hidden sm:block">
+                        <i class="fas fa-hand-holding-heart text-3xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl md:text-2xl font-bold text-dark mb-1">Punya Kucing yang Butuh Rumah Baru?
+                        </h3>
+                        <p class="text-gray-600 text-sm md:text-base">Bantu mereka menemukan keluarga penyayang yang
+                            terverifikasi.</p>
+                    </div>
+                </div>
+                <button onclick="openRegisterCatModal()"
+                    class="bg-dark text-white px-6 py-3 rounded-xl font-bold hover:bg-gray-800 transition shadow-lg whitespace-nowrap z-10 flex items-center gap-2 group w-full md:w-auto justify-center">
+                    <i class="fas fa-plus-circle group-hover:rotate-90 transition duration-300"></i> Pasang Iklan Adopsi
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content: Cat Grid -->
+    <main class="max-w-7xl mx-auto px-4 py-12">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold text-dark">Kucing yang Menunggu Rumah</h2>
+            <span class="text-sm text-gray-500">Menampilkan <span id="count">3</span> kucing</span>
+        </div>
+
+        <div id="cat-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Cards will be injected by JS -->
+        </div>
+    </main>
+
+    <!-- Donation Section -->
+    <section id="donation" class="bg-white py-16 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-dark mb-4">Dukung Shelter Pahlawan</h2>
+            <p class="text-gray-600 mb-10 max-w-2xl mx-auto">Bantu shelter terverifikasi menyediakan makanan dan
+                perawatan medis bagi kucing yang belum diadopsi.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Shelter 1 -->
+                <div
+                    class="p-6 border border-gray-200 rounded-xl hover:shadow-xl hover:shadow-purple-100 transition text-left group">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden">
+                            <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Shelter1" alt="Shelter">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-dark flex items-center">Rumah Kucing Bintaro <i
+                                    class="fas fa-check-circle verified-badge" title="Terverifikasi"></i></h3>
+                            <p class="text-xs text-gray-500">Shelter Terverifikasi</p>
+                        </div>
+                    </div>
+                    <!-- Progress Bar -->
+                    <div class="w-full bg-gray-100 rounded-full h-3 mb-4 overflow-hidden">
+                        <div class="bg-gradient-to-r from-purple-500 to-indigo-500 h-3 rounded-full" style="width: 70%">
+                        </div>
+                    </div>
+
+                    <!-- Stats Stacked -->
+                    <div class="flex flex-col gap-1 mb-5 text-sm">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-500">Target</span>
+                            <span class="font-bold text-gray-700">Rp 5.000.000</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-500">Terkumpul</span>
+                            <span class="font-bold text-primary">Rp 3.500.000</span>
+                        </div>
+                    </div>
+
+                    <button onclick="openDonationModal('Rumah Kucing Bintaro')"
+                        class="w-full py-2 border border-primary text-primary rounded-lg hover:bg-gradient-to-r hover:from-purple-500 hover:to-indigo-600 hover:text-white hover:border-transparent transition font-medium">Dukung
+                        Shelter</button>
+                </div>
+
+                <!-- Shelter 2 -->
+                <div
+                    class="p-6 border border-gray-200 rounded-xl hover:shadow-xl hover:shadow-purple-100 transition text-left group">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden">
+                            <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Shelter2" alt="Shelter">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-dark flex items-center">Peduli Ekor Panjang <i
+                                    class="fas fa-check-circle verified-badge" title="Terverifikasi"></i></h3>
+                            <p class="text-xs text-gray-500">Shelter Terverifikasi</p>
+                        </div>
+                    </div>
+                    <!-- Progress Bar -->
+                    <div class="w-full bg-gray-100 rounded-full h-3 mb-4 overflow-hidden">
+                        <div class="bg-gradient-to-r from-blue-400 to-cyan-500 h-3 rounded-full" style="width: 45%">
+                        </div>
+                    </div>
+
+                    <!-- Stats Stacked -->
+                    <div class="flex flex-col gap-1 mb-5 text-sm">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-500">Target</span>
+                            <span class="font-bold text-gray-700">Rp 2.500.000</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-500">Terkumpul</span>
+                            <span class="font-bold text-secondary">Rp 1.200.000</span>
+                        </div>
+                    </div>
+
+                    <button onclick="openDonationModal('Peduli Ekor Panjang')"
+                        class="w-full py-2 border border-secondary text-secondary rounded-lg hover:bg-gradient-to-r hover:from-blue-400 hover:to-cyan-500 hover:text-white hover:border-transparent transition font-medium">Dukung
+                        Shelter</button>
+                </div>
+
+                <!-- Shelter 3 -->
+                <div
+                    class="p-6 border border-gray-200 rounded-xl hover:shadow-xl hover:shadow-purple-100 transition text-left group">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden">
+                            <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Felix" alt="Shelter">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-dark flex items-center">Cat House Bandung <i
+                                    class="fas fa-check-circle verified-badge" title="Terverifikasi"></i></h3>
+                            <p class="text-xs text-gray-500">Shelter Terverifikasi</p>
+                        </div>
+                    </div>
+                    <!-- Progress Bar -->
+                    <div class="w-full bg-gray-100 rounded-full h-3 mb-4 overflow-hidden">
+                        <div class="bg-gradient-to-r from-green-400 to-emerald-500 h-3 rounded-full" style="width: 90%">
+                        </div>
+                    </div>
+
+                    <!-- Stats Stacked -->
+                    <div class="flex flex-col gap-1 mb-5 text-sm">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-500">Target</span>
+                            <span class="font-bold text-gray-700">Rp 9.000.000</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-500">Terkumpul</span>
+                            <span class="font-bold text-green-600">Rp 8.000.000</span>
+                        </div>
+                    </div>
+
+                    <button onclick="openDonationModal('Cat House Bandung')"
+                        class="w-full py-2 border border-green-600 text-green-600 rounded-lg hover:bg-gradient-to-r hover:from-green-500 hover:to-emerald-600 hover:text-white hover:border-transparent transition font-medium">Dukung
+                        Shelter</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section (New) -->
+    <section id="faq" class="bg-gradient-to-b from-white to-purple-50 py-16">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-dark mb-2">Pertanyaan Umum (FAQ)</h2>
+                <p class="text-gray-500">Hal yang sering ditanyakan seputar adopsi kucing.</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div
+                    class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
+                    <button onclick="toggleFAQ('faq1')"
+                        class="w-full flex justify-between items-center p-5 text-left focus:outline-none">
+                        <span class="font-bold text-gray-700">Apa syarat utama mengadopsi kucing?</span>
+                        <i id="icon-faq1"
+                            class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq1"
+                        class="hidden px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                        Syarat utamanya adalah komitmen seumur hidup (15-20 tahun), izin dari seluruh anggota keluarga
+                        atau pemilik tempat tinggal, rumah yang aman (indoor atau pagar tertutup), serta kesiapan
+                        finansial untuk makanan dan perawatan medis (vaksin/steril).
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div
+                    class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
+                    <button onclick="toggleFAQ('faq2')"
+                        class="w-full flex justify-between items-center p-5 text-left focus:outline-none">
+                        <span class="font-bold text-gray-700">Apakah ada biaya adopsi?</span>
+                        <i id="icon-faq2"
+                            class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq2"
+                        class="hidden px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                        Biaya adopsi bervariasi tergantung kebijakan shelter atau pemilik sebelumnya. Sebagian besar
+                        shelter menerapkan <em>adoption fee</em> untuk mengganti biaya sterilisasi dan vaksinasi yang
+                        sudah dilakukan, serta sebagai bentuk komitmen awal adopter.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div
+                    class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
+                    <button onclick="toggleFAQ('faq3')"
+                        class="w-full flex justify-between items-center p-5 text-left focus:outline-none">
+                        <span class="font-bold text-gray-700">Bagaimana jika kucing tidak cocok dengan hewan lain di
+                            rumah?</span>
+                        <i id="icon-faq3"
+                            class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq3"
+                        class="hidden px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                        Proses perkenalan kucing baru butuh waktu dan kesabaran (bisa 1-2 minggu). Kami menyarankan masa
+                        percobaan (trial adoption). Jika setelah usaha maksimal kucing tetap tidak cocok, kucing dapat
+                        dikembalikan ke shelter demi kenyamanan semua pihak.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div
+                    class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
+                    <button onclick="toggleFAQ('faq4')"
+                        class="w-full flex justify-between items-center p-5 text-left focus:outline-none">
+                        <span class="font-bold text-gray-700">Apakah semua kucing di sini sudah disteril?</span>
+                        <i id="icon-faq4"
+                            class="fas fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq4"
+                        class="hidden px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                        Kucing dewasa umumnya sudah disteril sebelum diadopsi. Untuk anak kucing (kitten) yang belum
+                        cukup umur, adopter biasanya diwajibkan menandatangani perjanjian untuk melakukan sterilisasi
+                        saat usia kucing sudah mencukupi (sekitar 5-6 bulan).
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; 2024 MeowMatch Indonesia. Membantu setiap ekor menemukan rumah.</p>
+        </div>
+    </footer>
+
+    <!-- MODAL: Cat Details -->
+    <div id="cat-modal"
+        class="fixed inset-0 bg-black bg-opacity-50 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300">
+        <div
+            class="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto flex flex-col md:flex-row shadow-2xl relative">
+            <button onclick="closeModal('cat-modal')"
+                class="absolute top-4 right-4 z-10 bg-white rounded-full p-2 shadow hover:bg-gray-100"><i
+                    class="fas fa-times"></i></button>
+
+            <!-- Left: Gallery -->
+            <div class="w-full md:w-1/2 bg-gray-100 relative h-64 md:h-auto">
+                <img id="modal-img" src="" class="w-full h-full object-cover" alt="Cat Detail">
+                <div class="absolute bottom-4 left-4 flex gap-2">
+                    <div class="bg-white p-1 rounded shadow cursor-pointer"><i class="fas fa-image text-gray-600"></i>
+                    </div>
+                    <div class="bg-white p-1 rounded shadow cursor-pointer"><i class="fas fa-video text-gray-600"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Info -->
+            <div class="w-full md:w-1/2 p-6 md:p-8">
+                <div class="flex justify-between items-start mb-2">
+                    <h2 id="modal-name" class="text-3xl font-bold text-dark"></h2>
+                    <span id="modal-gender"
+                        class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-xs font-bold uppercase"></span>
+                </div>
+
+                <div class="flex items-center gap-2 mb-4 text-sm text-gray-500">
+                    <i class="fas fa-map-marker-alt text-primary"></i> <span id="modal-location"></span>
+                </div>
+
+                <!-- Verified Owner Badge -->
+                <div class="flex items-center gap-2 bg-green-50 p-2 rounded-lg border border-green-100 mb-6">
+                    <i class="fas fa-shield-alt text-green-500"></i>
+                    <div>
+                        <p class="text-xs text-gray-500">Dirawat oleh Shelter Terverifikasi</p>
+                        <p class="text-sm font-bold text-dark" id="modal-shelter"></p>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="mb-4">
+                    <h3 class="font-bold text-dark mb-2">Tentang Saya</h3>
+                    <p id="modal-desc" class="text-gray-600 text-sm leading-relaxed mb-4"></p>
+                </div>
+
+                <!-- Attributes -->
+                <div class="grid grid-cols-2 gap-3 mb-6">
+                    <div class="bg-gray-50 p-3 rounded-lg text-center">
+                        <i class="fas fa-heartbeat text-red-400 mb-1"></i>
+                        <p class="text-xs text-gray-500">Kesehatan</p>
+                        <p class="text-sm font-semibold" id="modal-health"></p>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded-lg text-center">
+                        <i class="fas fa-brain text-purple-400 mb-1"></i>
+                        <p class="text-xs text-gray-500">Kepribadian</p>
+                        <p class="text-sm font-semibold" id="modal-personality"></p>
+                    </div>
+                </div>
+
+                <div class="flex gap-3">
+                    <!-- Updated Button to trigger logic -->
+                    <button onclick="openAdoptionForm()"
+                        class="w-full bg-gradient-to-r from-purple-500 to-indigo-600 text-white py-3 rounded-xl font-bold hover:from-purple-600 hover:to-indigo-700 transition shadow-lg shadow-purple-200">
+                        Ajukan Adopsi
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Adoption Questionnaire (UPDATED) -->
+    <div id="adoption-modal"
+        class="fixed inset-0 bg-black bg-opacity-60 z-[70] hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-xl w-full max-w-lg p-6 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <div>
+                    <h3 class="text-xl font-bold text-dark">Formulir Peminat Adopsi</h3>
+                    <p class="text-xs text-gray-500">Mengajukan adopsi untuk: <span id="adopt-cat-name"
+                            class="font-bold text-primary">Kucing</span></p>
+                </div>
+                <button onclick="closeModal('adoption-modal')" class="text-gray-400 hover:text-gray-600"><i
+                        class="fas fa-times"></i></button>
+            </div>
+
+            <form onsubmit="submitAdoption(event)">
+                <div class="space-y-4">
+                    <!-- Identitas Diri -->
+                    <div class="bg-purple-50 p-3 rounded-lg border border-purple-100 mb-2">
+                        <h4 class="text-sm font-bold text-purple-800 mb-2 border-b border-purple-200 pb-1">Data Diri
+                            Calon Adopter</h4>
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1">Nama Lengkap</label>
+                                <input type="text" id="adopt-name" required
+                                    class="w-full border-gray-300 rounded-lg shadow-sm border p-2 text-sm focus:ring-primary focus:border-primary"
+                                    placeholder="Nama sesuai KTP">
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-xs font-medium text-gray-700 mb-1">No. WhatsApp</label>
+                                    <input type="tel" id="adopt-phone" required
+                                        class="w-full border-gray-300 rounded-lg shadow-sm border p-2 text-sm focus:ring-primary focus:border-primary"
+                                        placeholder="08xxxx">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-gray-700 mb-1">Domisili
+                                        (Kota/Kec)</label>
+                                    <input type="text" id="adopt-address" required
+                                        class="w-full border-gray-300 rounded-lg shadow-sm border p-2 text-sm focus:ring-primary focus:border-primary"
+                                        placeholder="Cth: Tebet, Jaksel">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1">Pekerjaan</label>
+                                <input type="text" id="adopt-job" required
+                                    class="w-full border-gray-300 rounded-lg shadow-sm border p-2 text-sm focus:ring-primary focus:border-primary"
+                                    placeholder="Untuk validasi kesiapan finansial">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kuesioner Singkat -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Kondisi tempat tinggal &
+                            Pagar?</label>
+                        <select id="adopt-house"
+                            class="w-full border-gray-300 rounded-lg shadow-sm border p-2 focus:ring-primary focus:border-primary text-sm">
+                            <option>Rumah pagar tertutup (Aman)</option>
+                            <option>Apartemen / Kost (Aman)</option>
+                            <option>Rumah tanpa pagar / Terbuka</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Izin Keluarga / Lingkungan?</label>
+                        <select id="adopt-permission"
+                            class="w-full border-gray-300 rounded-lg shadow-sm border p-2 focus:ring-primary focus:border-primary text-sm">
+                            <option>Semua setuju & mendukung</option>
+                            <option>Tinggal sendiri</option>
+                            <option>Belum didiskusikan</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Pengalaman memelihara
+                            kucing?</label>
+                        <textarea id="adopt-exp"
+                            class="w-full border-gray-300 rounded-lg shadow-sm border p-2 focus:ring-primary focus:border-primary text-sm"
+                            rows="2" placeholder="Ceritakan pengalaman Anda..."></textarea>
+                    </div>
+
+                    <div
+                        class="bg-yellow-50 p-3 rounded-lg border border-yellow-200 text-[10px] text-yellow-800 flex gap-2">
+                        <i class="fas fa-shield-alt text-lg"></i>
+                        <p>Dengan mengirim formulir ini, Anda setuju untuk diwawancarai lebih lanjut oleh pihak
+                            Shelter/Pemilik untuk memastikan kesejahteraan kucing.</p>
+                    </div>
+                </div>
+
+                <button type="submit"
+                    class="w-full mt-6 bg-green-500 text-white py-3 rounded-xl font-bold hover:bg-green-600 transition flex items-center justify-center gap-2 shadow-md">
+                    <i class="fab fa-whatsapp text-lg"></i> Kirim Pengajuan via WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: Register Cat (New Feature) -->
+    <div id="register-cat-modal"
+        class="fixed inset-0 bg-black bg-opacity-60 z-[75] hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-xl w-full max-w-lg p-6 max-h-[90vh] overflow-y-auto relative">
+            <button onclick="closeModal('register-cat-modal')"
+                class="absolute top-4 right-4 text-gray-400 hover:text-gray-600"><i class="fas fa-times"></i></button>
+
+            <div class="mb-6 border-b pb-4">
+                <h3 class="text-xl font-bold text-dark flex items-center gap-2">
+                    <i class="fas fa-paw text-primary"></i> Daftarkan Kucing
+                </h3>
+                <p class="text-xs text-gray-500 mt-1">Isi data kucing yang ingin Anda carikan adopter.</p>
+            </div>
+
+            <form onsubmit="submitCatRegistration(event)">
+                <div class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nama Kucing</label>
+                            <input type="text" id="reg-name" required
+                                class="w-full border-gray-300 rounded-lg shadow-sm border p-2 focus:ring-primary focus:border-primary text-sm"
+                                placeholder="Contoh: Muezza">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Umur</label>
+                            <input type="text" id="reg-age" required
+                                class="w-full border-gray-300 rounded-lg shadow-sm border p-2 focus:ring-primary focus:border-primary text-sm"
+                                placeholder="Contoh: 1 Tahun">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Jenis Kelamin</label>
+                            <select id="reg-gender"
+                                class="w-full border-gray-300 rounded-lg shadow-sm border p-2 focus:ring-primary focus:border-primary text-sm">
+                                <option>Jantan</option>
+                                <option>Betina</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Ras / Jenis</label>
+                            <!-- Changed from Input to Select -->
+                            <select id="reg-breed"
+                                class="w-full border-gray-300 rounded-lg shadow-sm border p-2 focus:ring-primary focus:border-primary text-sm">
+                                <option>Domestik</option>
+                                <option>Mix</option>
+                                <option>Ras</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Lokasi Saat Ini</label>
+                        <input type="text" id="reg-location" required
+                            class="w-full border-gray-300 rounded-lg shadow-sm border p-2 focus:ring-primary focus:border-primary text-sm"
+                            placeholder="Kota / Kecamatan">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Nama Pemilik / Pelapor</label>
+                        <input type="text" id="reg-owner" required
+                            class="w-full border-gray-300 rounded-lg shadow-sm border p-2 focus:ring-primary focus:border-primary text-sm"
+                            placeholder="Nama Anda">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Kondisi / Deskripsi Singkat</label>
+                        <textarea id="reg-desc" rows="3" required
+                            class="w-full border-gray-300 rounded-lg shadow-sm border p-2 focus:ring-primary focus:border-primary text-sm"
+                            placeholder="Ceritakan kondisi kesehatan, sifat, dan alasan adopsi..."></textarea>
+                    </div>
+
+                    <div
+                        class="bg-green-50 p-3 rounded-lg border border-green-100 text-xs text-green-800 flex items-start gap-2">
+                        <i class="fab fa-whatsapp mt-0.5 text-lg"></i>
+                        <p>Data ini akan dikirim langsung ke WhatsApp Admin kami untuk verifikasi sebelum ditayangkan.
+                        </p>
+                    </div>
+                </div>
+
+                <button type="submit"
+                    class="w-full mt-6 bg-green-500 text-white py-2 rounded-lg font-bold hover:bg-green-600 transition flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp"></i> Kirim Data via WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: Donation Info -->
+    <div id="donation-modal"
+        class="fixed inset-0 bg-black bg-opacity-60 z-[80] hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl w-full max-w-md p-6 relative transform transition-all scale-100">
+            <button onclick="closeModal('donation-modal')"
+                class="absolute top-4 right-4 text-gray-400 hover:text-gray-600"><i class="fas fa-times"></i></button>
+
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i id="donate-icon" class="fas fa-heart text-2xl text-primary"></i>
+                </div>
+                <h3 class="text-xl font-bold text-dark mb-1">Dukung <br><span id="donate-shelter-name"
+                        class="text-primary">Shelter</span></h3>
+                <p id="donate-subtitle" class="text-sm text-gray-500">Pilih bentuk dukungan Anda</p>
+            </div>
+
+            <!-- Choice Section -->
+            <div id="donate-choice" class="grid grid-cols-2 gap-4 mb-2">
+                <button onclick="selectDonationType('makanan')"
+                    class="p-4 border-2 border-gray-100 rounded-xl hover:border-primary hover:bg-purple-50 transition flex flex-col items-center gap-2 group text-center h-full">
+                    <div
+                        class="w-12 h-12 bg-purple-100 text-primary rounded-full flex items-center justify-center group-hover:scale-110 transition shrink-0">
+                        <i class="fas fa-box-open text-xl"></i>
+                    </div>
+                    <span class="font-bold text-gray-700 text-sm group-hover:text-primary">Donasi Pakan</span>
+                    <span class="text-[10px] text-gray-400 leading-tight">Kirim makanan kucing ke alamat shelter</span>
+                </button>
+                <button onclick="selectDonationType('dana')"
+                    class="p-4 border-2 border-gray-100 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition flex flex-col items-center gap-2 group text-center h-full">
+                    <div
+                        class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center group-hover:scale-110 transition shrink-0">
+                        <i class="fas fa-hand-holding-usd text-xl"></i>
+                    </div>
+                    <span class="font-bold text-gray-700 text-sm group-hover:text-blue-600">Donasi Dana</span>
+                    <span class="text-[10px] text-gray-400 leading-tight">Transfer untuk biaya medis &
+                        operasional</span>
+                </button>
+            </div>
+
+            <!-- Content for Dana (Hidden by default) -->
+            <div id="donate-content-dana" class="hidden space-y-4">
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                    <p class="text-xs text-gray-500 mb-1">Transfer Bank (BCA)</p>
+                    <div class="flex justify-between items-center">
+                        <span class="font-mono font-bold text-lg text-dark">5409-888-777</span>
+                        <button onclick="copyToClipboard('5409-888-777')"
+                            class="text-primary text-xs hover:underline">Salin</button>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">a.n Yayasan Peduli Kucing</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 text-center">
+                    <p class="text-xs text-gray-500 mb-2">Scan QRIS</p>
+                    <div class="bg-white p-2 inline-block rounded border">
+                        <!-- Placeholder QRIS Image -->
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=DonasiMeowMatch"
+                            alt="QRIS Code" class="w-32 h-32 object-contain">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content for Makanan (Hidden by default) -->
+            <div id="donate-content-makanan" class="hidden space-y-4">
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                    <p class="text-xs text-gray-500 mb-1">Alamat Pengiriman Paket</p>
+                    <p class="font-medium text-sm text-dark mb-2" id="donate-address">Jl. Mawar No. 12, Jakarta Selatan
+                    </p>
+                    <div class="flex items-center gap-1 text-xs text-orange-600 bg-orange-50 p-2 rounded">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Mohon lampirkan nama pengirim di paket</span>
+                    </div>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
+                    <p class="text-xs text-blue-600 font-bold mb-2">Kebutuhan Mendesak Saat Ini:</p>
+                    <ul class="text-sm text-blue-800 list-disc list-inside space-y-1">
+                        <li>Dry Food (Adult/Kitten)</li>
+                        <li>Wet Food (Kaleng) - Whiskas/Life Cat</li>
+                        <li>Pasir Zeolit & Obat Cacing</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Confirmation Form (Hidden by default) -->
+            <div id="donate-form-container" class="hidden space-y-4">
+                <div class="bg-purple-50 p-3 rounded-lg border border-purple-100 text-xs text-purple-800 mb-2">
+                    <i class="fas fa-info-circle mr-1"></i> Isi data di bawah ini untuk konfirmasi otomatis via
+                    WhatsApp.
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Nama Donatur</label>
+                    <input type="text" id="wa-name"
+                        class="w-full border-gray-300 rounded-lg shadow-sm border p-2 focus:ring-primary focus:border-primary text-sm"
+                        placeholder="Nama Anda">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1" id="wa-detail-label">Nominal
+                        Donasi</label>
+                    <input type="text" id="wa-detail"
+                        class="w-full border-gray-300 rounded-lg shadow-sm border p-2 focus:ring-primary focus:border-primary text-sm"
+                        placeholder="Rp 00.000 / No. Resi">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Pesan / Doa (Opsional)</label>
+                    <textarea id="wa-message" rows="2"
+                        class="w-full border-gray-300 rounded-lg shadow-sm border p-2 focus:ring-primary focus:border-primary text-sm"
+                        placeholder="Semoga berkah..."></textarea>
+                </div>
+                <button onclick="sendToWhatsApp()"
+                    class="w-full bg-green-500 text-white py-3 rounded-xl font-bold hover:bg-green-600 transition shadow-lg flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp text-lg"></i> Kirim Konfirmasi
+                </button>
+            </div>
+
+            <!-- Navigation Buttons (Shown only after selection) -->
+            <div id="donation-nav-btns" class="hidden mt-6">
+                <button id="confirm-donation-btn" onclick="showConfirmationForm()"
+                    class="w-full bg-gradient-to-r from-purple-500 to-indigo-600 text-white py-3 rounded-xl font-bold hover:from-purple-600 hover:to-indigo-700 transition shadow-lg shadow-purple-200">
+                    Lanjut Konfirmasi
+                </button>
+                <button onclick="resetDonationModal()"
+                    class="w-full mt-2 text-gray-400 text-xs hover:text-gray-600 py-2">
+                    <i class="fas fa-arrow-left mr-1"></i> Kembali ke Pilihan
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Data Kucing (Database Mockup)
+        const cats = [
+            {
+                id: 1,
+                name: "Mochi",
+                breed: "British Shorthair Mix",
+                age: "1.5 Tahun",
+                gender: "Jantan",
+                img: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                tags: ["ramah-anak", "vaksin", "indoor"],
+                shelter: "Rumah Kucing Bintaro",
+                verified: true,
+                location: "Tangerang Selatan",
+                health: "Vaksin Lengkap, Bebas Kutu",
+                personality: "Manja, Suka Tidur",
+                desc: "Mochi adalah kucing yang sangat santai. Dia ditemukan di jalanan saat masih kecil. Sekarang sudah sehat dan mencari sofa empuk untuk tidur seharian. Sangat cocok untuk keluarga dengan anak kecil."
+            },
+            {
+                id: 2,
+                name: "Oyen",
+                breed: "Domestik",
+                age: "8 Bulan",
+                gender: "Jantan",
+                img: "https://images.unsplash.com/photo-1573865526739-10659fec78a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                tags: ["aktif", "vaksin"],
+                shelter: "Peduli Ekor Panjang",
+                verified: true,
+                location: "Jakarta Barat",
+                health: "Vaksin Pertama, Sehat",
+                personality: "Aktif, Suka Bermain",
+                desc: "Oyen si pemberani! Energinya tidak ada habisnya. Cocok untuk Anda yang mencari teman bermain yang aktif. Dia suka mengejar mainan bulu."
+            },
+            {
+                id: 3,
+                name: "Luna",
+                breed: "Anggora Mix",
+                age: "2 Tahun",
+                gender: "Betina",
+                img: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                tags: ["steril", "ramah-anak", "indoor", "vaksin"],
+                shelter: "Cat House Bandung",
+                verified: true,
+                location: "Bandung",
+                health: "Steril, Vaksin Lengkap",
+                personality: "Kalem, Elegan",
+                desc: "Luna adalah putri yang anggun. Dia sudah disteril dan sangat bersih. Luna butuh waktu untuk beradaptasi dengan orang baru, tapi sangat setia jika sudah percaya."
+            },
+            {
+                id: 4,
+                name: "Belang",
+                breed: "Calico",
+                age: "1 Tahun",
+                gender: "Betina",
+                img: "https://images.unsplash.com/photo-1529778873920-4da4926a7071?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                tags: ["steril", "indoor"],
+                shelter: "Donor Pribadi (Budi)",
+                verified: true,
+                location: "Bekasi",
+                health: "Sudah Steril",
+                personality: "Pemalu, Observan",
+                desc: "Belang diselamatkan dari pasar. Dia sedikit pemalu tapi sangat manis. Membutuhkan owner yang sabar."
+            },
+            {
+                id: 5,
+                name: "Simba",
+                breed: "Maine Coon Mix",
+                age: "3 Tahun",
+                gender: "Jantan",
+                img: "https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                tags: ["vaksin", "steril"],
+                shelter: "Rumah Kucing Bintaro",
+                verified: true,
+                location: "Tangerang Selatan",
+                health: "Sehat Walafiat",
+                personality: "Raksasa Lembut",
+                desc: "Simba berbadan besar tapi hatinya sangat lembut. Dia suka dibelai di bagian dagu."
+            },
+            {
+                id: 6,
+                name: "Kuro",
+                breed: "Bombay",
+                age: "5 Bulan",
+                gender: "Jantan",
+                img: "https://images.unsplash.com/photo-1548247416-ec66f4900b2e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                tags: ["aktif", "ramah-anak"],
+                shelter: "Peduli Ekor Panjang",
+                verified: true,
+                location: "Jakarta Selatan",
+                health: "Belum Steril (Masih Kecil)",
+                personality: "Penasaran, Lincah",
+                desc: "Kuro si macan kumbang kecil. Sangat lincah dan suka memanjat cat tree."
+            }
+        ];
+
+        let activeFilters = [];
+        let currentDonationType = '';
+        let currentShelter = '';
+        let currentAdoptionCat = '';
+
+        // Render Function
+        function renderCats(catsToRender) {
+            const grid = document.getElementById('cat-grid');
+            const countSpan = document.getElementById('count');
+            grid.innerHTML = '';
+
+            catsToRender.forEach(cat => {
+                const badgeHtml = cat.verified ? `<i class="fas fa-check-circle verified-badge" title="Terverifikasi"></i>` : '';
+
+                // Generate Tag Badges for Card
+                let tagsHtml = '';
+                if (cat.tags.includes('ramah-anak')) tagsHtml += `<span class="bg-green-100 text-green-600 text-[10px] px-2 py-1 rounded-full mr-1">Ramah Anak</span>`;
+                if (cat.tags.includes('steril')) tagsHtml += `<span class="bg-blue-100 text-blue-600 text-[10px] px-2 py-1 rounded-full mr-1">Steril</span>`;
+
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden group border border-gray-100 flex flex-col fade-in';
+                card.innerHTML = `
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="${cat.img}" alt="${cat.name}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg text-xs font-bold text-dark shadow-sm">
+                            ${cat.age}
+                        </div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 class="text-xl font-bold text-dark hover:text-primary transition cursor-pointer" onclick="openCatDetail(${cat.id})">${cat.name}</h3>
+                                <p class="text-sm text-gray-500">${cat.breed}</p>
+                            </div>
+                            <div class="text-right">
+                                <i class="${cat.gender === 'Jantan' ? 'fas fa-mars text-blue-400' : 'fas fa-venus text-pink-400'} text-lg"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4 flex flex-wrap gap-y-2">
+                            ${tagsHtml}
+                        </div>
+
+                        <div class="mt-auto pt-4 border-t border-gray-100 flex items-center justify-between">
+                            <div class="flex items-center text-xs text-gray-500">
+                                <i class="fas fa-map-marker-alt mr-1 text-primary"></i> ${cat.location}
+                            </div>
+                            <p class="text-xs text-gray-400 flex items-center">
+                                ${cat.shelter.split(' ')[0]}... ${badgeHtml}
+                            </p>
+                        </div>
+                        
+                        <button onclick="openCatDetail(${cat.id})" class="mt-4 w-full bg-white text-gray-700 font-medium py-2 rounded-lg transition border border-gray-200 hover:border-primary hover:text-primary hover:bg-purple-50">
+                            Lihat Detail
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            countSpan.innerText = catsToRender.length;
+        }
+
+        // Filter Logic
+        function toggleFilter(element, filterTag) {
+            const icon = element.querySelector('i');
+
+            if (activeFilters.includes(filterTag)) {
+                activeFilters = activeFilters.filter(f => f !== filterTag);
+                element.classList.remove('bg-purple-100', 'border-primary');
+                element.classList.add('bg-gray-50', 'border-transparent');
+                icon.classList.remove('text-primary');
+                icon.classList.add('text-gray-400');
+            } else {
+                activeFilters.push(filterTag);
+                element.classList.remove('bg-gray-50', 'border-transparent');
+                element.classList.add('bg-purple-100', 'border-primary');
+                icon.classList.remove('text-gray-400');
+                icon.classList.add('text-primary');
+            }
+        }
+
+        function applyFilters() {
+            if (activeFilters.length === 0) {
+                renderCats(cats);
+                return;
+            }
+
+            const filtered = cats.filter(cat => {
+                // Check if cat has ALL active filter tags
+                return activeFilters.every(filter => cat.tags.includes(filter));
+            });
+            renderCats(filtered);
+        }
+
+        // Modal Logic
+        function openCatDetail(id) {
+            const cat = cats.find(c => c.id === id);
+            if (!cat) return;
+
+            // Simpan nama kucing ke variabel global saat modal dibuka
+            currentAdoptionCat = cat.name;
+
+            document.getElementById('modal-img').src = cat.img;
+            document.getElementById('modal-name').innerText = cat.name;
+            document.getElementById('modal-gender').innerText = cat.gender;
+            document.getElementById('modal-location').innerText = cat.location;
+            document.getElementById('modal-shelter').innerHTML = `${cat.shelter} ${cat.verified ? '<i class="fas fa-check-circle verified-badge"></i>' : ''}`;
+            document.getElementById('modal-desc').innerText = cat.desc;
+            document.getElementById('modal-health').innerText = cat.health;
+            document.getElementById('modal-personality').innerText = cat.personality;
+
+            document.getElementById('cat-modal').classList.remove('hidden');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        function openAdoptionForm() {
+            closeModal('cat-modal'); // Close detail modal
+            // Tampilkan nama kucing di judul formulir
+            document.getElementById('adopt-cat-name').innerText = currentAdoptionCat;
+            document.getElementById('adoption-modal').classList.remove('hidden');
+        }
+
+        function submitAdoption(e) {
+            e.preventDefault();
+
+            // Ambil data dari form
+            const name = document.getElementById('adopt-name').value;
+            const phone = document.getElementById('adopt-phone').value;
+            const address = document.getElementById('adopt-address').value;
+            const job = document.getElementById('adopt-job').value;
+            const house = document.getElementById('adopt-house').value;
+            const permission = document.getElementById('adopt-permission').value;
+            const exp = document.getElementById('adopt-exp').value;
+
+            // Validasi sederhana
+            if (!name || !phone || !address) {
+                alert("Mohon lengkapi data diri Anda (Nama, No WA, Domisili).");
+                return;
+            }
+
+            // Buat Pesan WhatsApp
+            let text = `Halo Admin MeowMatch, saya berminat untuk mengadopsi kucing:%0A`;
+            text += `🐈 *Nama Kucing:* ${currentAdoptionCat}%0A%0A`;
+
+            text += `*Data Diri Calon Adopter:*%0A`;
+            text += `👤 Nama: ${name}%0A`;
+            text += `📱 No WA: ${phone}%0A`;
+            text += `📍 Domisili: ${address}%0A`;
+            text += `💼 Pekerjaan: ${job}%0A%0A`;
+
+            text += `*Jawaban Kuesioner:*%0A`;
+            text += `🏠 Kondisi Rumah: ${house}%0A`;
+            text += `👨‍👩‍👧‍👦 Izin Keluarga: ${permission}%0A`;
+            text += `📝 Pengalaman: ${exp}%0A%0A`;
+            text += `Mohon info prosedur selanjutnya. Terima kasih! 🙏`;
+
+            // Kirim ke WhatsApp (Nomor Admin)
+            const phoneNumber = "6285340046722";
+            window.open(`https://wa.me/${phoneNumber}?text=${text}`, '_blank');
+
+            closeModal('adoption-modal');
+        }
+
+        // NEW: Register Cat Modal Logic
+        function openRegisterCatModal() {
+            document.getElementById('register-cat-modal').classList.remove('hidden');
+        }
+
+        function submitCatRegistration(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('reg-name').value;
+            const age = document.getElementById('reg-age').value;
+            const gender = document.getElementById('reg-gender').value;
+            const breed = document.getElementById('reg-breed').value;
+            const location = document.getElementById('reg-location').value;
+            const owner = document.getElementById('reg-owner').value;
+            const desc = document.getElementById('reg-desc').value;
+
+            // Construct WhatsApp Message
+            let text = `Halo Admin MeowMatch, saya ingin mendaftarkan kucing untuk adopsi.%0A%0A`;
+            text += `🐾 *Nama Kucing:* ${name}%0A`;
+            text += `🎂 *Umur:* ${age}%0A`;
+            text += `⚧ *Jenis Kelamin:* ${gender}%0A`;
+            text += `🐈 *Ras/Jenis:* ${breed}%0A`;
+            text += `📍 *Lokasi:* ${location}%0A`;
+            text += `👤 *Pemilik:* ${owner}%0A`;
+            text += `📝 *Deskripsi:* ${desc}`;
+
+            // Generic Admin Number
+            const phoneNumber = "6285340046722";
+
+            window.open(`https://wa.me/${phoneNumber}?text=${text}`, '_blank');
+            closeModal('register-cat-modal');
+        }
+
+        // Donation Modal Logic
+        function openDonationModal(shelterName) {
+            currentShelter = shelterName;
+            document.getElementById('donate-shelter-name').innerText = shelterName;
+
+            // Initial State: Show Choice, Hide Content
+            resetDonationModal();
+
+            document.getElementById('donation-modal').classList.remove('hidden');
+        }
+
+        function resetDonationModal() {
+            // Show choices
+            document.getElementById('donate-choice').classList.remove('hidden');
+            document.getElementById('donate-subtitle').innerText = "Pilih bentuk dukungan Anda";
+            document.getElementById('donate-icon').className = 'fas fa-heart text-2xl text-primary';
+
+            // Hide specific contents and buttons
+            document.getElementById('donate-content-dana').classList.add('hidden');
+            document.getElementById('donate-content-makanan').classList.add('hidden');
+            document.getElementById('donate-form-container').classList.add('hidden');
+            document.getElementById('donation-nav-btns').classList.add('hidden');
+
+            // Reset Confirm Button Text & Function just in case
+            const confirmBtn = document.getElementById('confirm-donation-btn');
+            confirmBtn.innerText = "Lanjut Konfirmasi";
+            confirmBtn.onclick = showConfirmationForm;
+            // Bug Fix: Pastikan tombol terlihat kembali saat reset
+            confirmBtn.classList.remove('hidden');
+        }
+
+        function selectDonationType(type) {
+            currentDonationType = type;
+            const shelterName = currentShelter;
+            const choiceDiv = document.getElementById('donate-choice');
+            const icon = document.getElementById('donate-icon');
+
+            // Hide choice, show content
+            choiceDiv.classList.add('hidden');
+            document.getElementById('donation-nav-btns').classList.remove('hidden');
+            document.getElementById('donate-subtitle').innerText = "Informasi Transfer / Pengiriman";
+
+            if (type === 'dana') {
+                document.getElementById('donate-content-dana').classList.remove('hidden');
+                icon.className = 'fas fa-hand-holding-usd text-2xl text-primary';
+            } else {
+                document.getElementById('donate-content-makanan').classList.remove('hidden');
+                icon.className = 'fas fa-box-open text-2xl text-primary';
+                document.getElementById('donate-address').innerText = `Markas ${shelterName}, Jl. Sahabat Satwa No. 88`;
+            }
+        }
+
+        function showConfirmationForm() {
+            // Hide Info Divs
+            document.getElementById('donate-content-dana').classList.add('hidden');
+            document.getElementById('donate-content-makanan').classList.add('hidden');
+
+            // Hide "Lanjut Konfirmasi" button as we are now in the form
+            document.getElementById('confirm-donation-btn').classList.add('hidden');
+
+            // Show Form
+            document.getElementById('donate-form-container').classList.remove('hidden');
+            document.getElementById('donate-subtitle').innerText = "Konfirmasi Donasi";
+
+            // Update Label based on type
+            const label = document.getElementById('wa-detail-label');
+            const input = document.getElementById('wa-detail');
+            if (currentDonationType === 'dana') {
+                label.innerText = "Nominal Donasi (Rp)";
+                input.placeholder = "Contoh: 50.000";
+            } else {
+                label.innerText = "Isi Paket / Nomor Resi";
+                input.placeholder = "Contoh: Dry Food Whiskas 2kg / JNE 882299";
+            }
+        }
+
+        function sendToWhatsApp() {
+            const name = document.getElementById('wa-name').value;
+            const detail = document.getElementById('wa-detail').value;
+            const message = document.getElementById('wa-message').value;
+
+            if (!name || !detail) {
+                alert("Mohon lengkapi Nama dan Detail Donasi.");
+                return;
+            }
+
+            // Construct WhatsApp Message
+            let text = `Halo Admin ${currentShelter},%0A%0ASaya ingin konfirmasi donasi *${currentDonationType === 'dana' ? 'Dana' : 'Makanan'}*.%0A%0A👤 Nama: ${name}%0A📦 Detail: ${detail}%0A📝 Pesan: ${message || '-'}`;
+
+            // Use dummy phone number
+            const phoneNumber = "6285340046722";
+
+            window.open(`https://wa.me/${phoneNumber}?text=${text}`, '_blank');
+
+            closeModal('donation-modal');
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text);
+            alert('Nomor rekening berhasil disalin!');
+        }
+
+        // FAQ Toggle Logic
+        function toggleFAQ(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+                icon.classList.add('text-primary');
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+                icon.classList.remove('text-primary');
+            }
+        }
+
+        // Mobile Menu Logic
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+            }
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCats(cats);
+        });
+
+    </script>
+</body>
+
+</html>
